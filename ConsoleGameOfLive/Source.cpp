@@ -127,6 +127,8 @@ void gotoxy(int x, int y) {
 
 int printSpace(int (*array)[100],int X, int Y ) {
 	
+
+
 	for (int i = 0; i < Y; i++)
 	{
 		for (int j = 0; j < X; j++)
@@ -177,37 +179,37 @@ void recalc(int(*space)[100], int(*lives)[100], int X, int Y) {
 					lives[j][i - 1] ++;
 
 
-					//if (space[j][i - 1] == 0 && lives[j][i - 1] == 3)
-					//	space[j][i - 1] = 1;
-					//if (space[j][i - 1] == 1 && ( lives[j][i - 1] <2 || lives[j][i - 1] >3) )
-					//	space[j][i - 1] = 0;
+					if (space[j][i - 1] == 0 && lives[j][i - 1] == 3)
+						space[j][i - 1] = 1;
+					if (space[j][i - 1] == 1 && ( lives[j][i - 1] <2 || lives[j][i - 1] >3) )
+						space[j][i - 1] = 0;
 				}
 				if (j != 0) {
 					lives[j - 1][i] ++;
-					//if (space[j - 1][i] == 0 && lives[j - 1][i] == 3)
-					//	space[j - 1][i] = 1;
-					//if (space[j - 1][i] == 1 && (lives[j - 1][i] < 2 || lives[j - 1][i] >3))
-					//	space[j - 1][i] = 0;
+					if (space[j - 1][i] == 0 && lives[j - 1][i] == 3)
+						space[j - 1][i] = 1;
+					if (space[j - 1][i] == 1 && (lives[j - 1][i] < 2 || lives[j - 1][i] >3))
+						space[j - 1][i] = 0;
 				}
 
 				if (i != X - 1) {
 					lives[j][i + 1] ++;
-					//if (space[j][i + 1] == 0 && lives[j][i + 1] == 3)
-					//	space[j][i + 1] = 1;
-					//if (space[j][i + 1] == 1 && (lives[j][i + 1] < 2 || lives[j][i + 1] >3))
-					//	space[j][i + 1] = 0;
+					if (space[j][i + 1] == 0 && lives[j][i + 1] == 3)
+						space[j][i + 1] = 1;
+					if (space[j][i + 1] == 1 && (lives[j][i + 1] < 2 || lives[j][i + 1] >3))
+						space[j][i + 1] = 0;
 				}
 				if (j != Y - 1) {
 					lives[j + 1][i] ++;
-					//if (space[j + 1][i] == 0 && lives[j + 1][i] == 3)
-					//	space[j + 1][i] = 1;
-					//if (space[j + 1][i] == 1 && (lives[j + 1][i] < 2 || lives[j + 1][i] >3))
-					//	space[j + 1][i] = 0;
+					if (space[j + 1][i] == 0 && lives[j + 1][i] == 3)
+						space[j + 1][i] = 1;
+					if (space[j + 1][i] == 1 && (lives[j + 1][i] < 2 || lives[j + 1][i] >3))
+						space[j + 1][i] = 0;
 				}
 			}
 		}
 	}
-
+	/*
 	for (int i = 0; i < X; i++) {
 		for (int j = 0; j < Y; j++) {
 			if (space[j][i] == 0 && lives[j][i] == 3)
@@ -235,5 +237,50 @@ void recalc(int(*space)[100], int(*lives)[100], int X, int Y) {
 			if (lives[j][i] > 3)
 				lives[j][i] = 1;
 		}
+	}*/
+}
+
+void otherCalc(int(*space)[100], int(*lives)[100], int X, int Y) {
+
+	int xx = 0, yy = 0;
+
+	for (int i = 0; i < X; i++) {
+		for (int j = 0; j < Y; j++) {
+
+			if (space[j][i] == 1) {
+				if (i != 0) {
+					lives[j][i - 1] ++;
+
+
+					if (space[j][i - 1] == 0 && lives[j][i - 1] == 3)
+						space[j][i - 1] = 1;
+					if (space[j][i - 1] == 1 && (lives[j][i - 1] < 2 || lives[j][i - 1] >3))
+						space[j][i - 1] = 0;
+				}
+				if (j != 0) {
+					lives[j - 1][i] ++;
+					if (space[j - 1][i] == 0 && lives[j - 1][i] == 3)
+						space[j - 1][i] = 1;
+					if (space[j - 1][i] == 1 && (lives[j - 1][i] < 2 || lives[j - 1][i] >3))
+						space[j - 1][i] = 0;
+				}
+
+				if (i != X - 1) {
+					lives[j][i + 1] ++;
+					if (space[j][i + 1] == 0 && lives[j][i + 1] == 3)
+						space[j][i + 1] = 1;
+					if (space[j][i + 1] == 1 && (lives[j][i + 1] < 2 || lives[j][i + 1] >3))
+						space[j][i + 1] = 0;
+				}
+				if (j != Y - 1) {
+					lives[j + 1][i] ++;
+					if (space[j + 1][i] == 0 && lives[j + 1][i] == 3)
+						space[j + 1][i] = 1;
+					if (space[j + 1][i] == 1 && (lives[j + 1][i] < 2 || lives[j + 1][i] >3))
+						space[j + 1][i] = 0;
+				}
+			}
+		}
 	}
+
 }
